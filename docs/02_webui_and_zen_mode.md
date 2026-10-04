@@ -23,6 +23,8 @@ d:\AnimaLoraStudio\venv\Scripts\python.exe studio_data\dataset_tools\webapp.py -
 
 ## 二、主界面工作台布局
 
+![主模式工作台全景](images/01_main_workbench.png)
+
 ```
 +------------------------------------------------------------------------------------+
 |  dskit › 10_girl                                  [写入已开启 / 仅预览] [🧘 禅模式] |
@@ -40,9 +42,17 @@ d:\AnimaLoraStudio\venv\Scripts\python.exe studio_data\dataset_tools\webapp.py -
 * 点击右上角 **`【开启写入】`**（变为醒目红色）后，操作才会真正持久化落盘，并自动留存还原点。
 
 ### 2. 双通道标注编辑 (Dual-Track Caption)
-* **Tags 通道**：展示可拖拽、可补全、带词典翻译的 Tag 胶囊。
-* **Prose 通道**：独立多行文本框，容纳如 `Digital illustration of a girl...` 风格的自然语言段落，彼此物理隔离，防止误当做 Tag 切碎。
-* **切分测试与方案 4**：提供手动【将当前描述智能切分】按钮，实时将混合文本规范拆解。
+
+<p align="center">
+  <img src="images/02_single_editor.png" alt="单图编辑与自然语言双通道" width="380" />
+</p>
+
+* **Tags 通道**：展示可拖拽、可补全、带中英词典翻译（`文/A 译`）的 Tag 胶囊；
+* **Prose 通道 (`ProseEditor`)**：独立多行文本框，容纳如 `Digital illustration of a girl...` 风格的自然语言段落，彼此物理隔离，防止误当做 Tag 切碎；
+* **三大核心快捷迁移操作**：
+  1. `✂️ 末尾 Tag 转入自然语言`：将 Tags 列表最后一个 Tag 自动移入自然语言描述开头；
+  2. `⬅️ 自然语言并入 Tags`：把自然语言描述按逗号/句号全部拆回并追加到 Tags 列表中；
+  3. `⚡ 自动重新切分 (方案 1+2)`：调用后端分词器一键自动按句法分离 Tag 与 Prose。
 
 ### 3. 直觉化单图编辑联动与选图体验
 * 在网格中点击任意图片（无论是单击勾选、区间连选、还是再次点击取消勾选），**最后一次被点击的图片均会立即同步作为单图编辑的目标对象**，无需多余操作，完全契合用户心理直觉。
@@ -81,9 +91,22 @@ d:\AnimaLoraStudio\venv\Scripts\python.exe studio_data\dataset_tools\webapp.py -
   3. `accept` 视图与目录概览、步数统计中彻底排除内部淘汰目录及其子文件夹；
 * **前端贴心预警**：当检测到淘汰目录嵌套在主目录内部时，界面会自动展示醒目的琥珀色警示条：`⚠️ 淘汰目录位于主目录内部，已启用递归隔离防重复`，让用户使用无后顾之忧。
 
+### 9. 批量编辑与格式清洗规范化 (Batch Editor)
+
+<p align="center">
+  <img src="images/03_batch_editor.png" alt="批量编辑与标签分布" width="380" />
+</p>
+
+* **指定位置插入 Tag**：支持在开头 (`front`)、末尾 (`back`) 或任意指定索引位置 (`at-index`) 插入 Tag，支持自动重排已有 Tag；
+* **批量移除与批量替换**：针对选中的多张图片进行精准的局部标签修正；
+* **格式清洗规范化**：一键去除 UTF-8 BOM、全半角标点转换、剥离外层引号、大小写转换、空格下划线互转；
+* **高频词频统计与过滤**：直观展示当前勾选图片的 Tag 频率直方图，支持输入过滤与点击筛选。
+
 ---
 
 ## 三、沉浸式「禅模式 (Zen Mode)」
+
+![沉浸式全屏禅模式 HUD](images/04_zen_mode_full.png)
 
 禅模式是专为**极速视觉复审、坏图淘汰与单张标注精修**设计的全屏 HUD 工作流，汲取了 `select pic (LoRA Dataset Culler)` 的单文件极速盲操精髓。
 
@@ -131,7 +154,10 @@ d:\AnimaLoraStudio\venv\Scripts\python.exe studio_data\dataset_tools\webapp.py -
   * 点击顶部状态栏的 **`📁 目录`** 按钮随时切换侧栏显示；
   * 面板右上角提供 `❮` 快捷收起按钮；收起时左上角浮动显示 `📁 目录树` 胶囊，点击即可拉开。
 
-### 4. 三态视角过滤 (Three-State View)
+### 4. 三态视角过滤与淘汰实战 (Three-State View)
+
+![禅模式淘汰状态与多层级目录树](images/05_zen_mode_reject.png)
+
 顶部栏支持一键切换全局视角：
 * **`👁 视图: 全部`**：遍历当前范围内的所有素材；
 * **`✔ 视图: 仅保留`**：专注复盘已保留的训练素材；

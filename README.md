@@ -50,7 +50,7 @@
 cd AnimaLoraStudio
 
 # 克隆本仓库到 studio_data/dataset_tools
-git clone https://github.com/<your-username>/dskit.git studio_data/dataset_tools
+git clone https://github.com/Heliumeow/AnimaLora-DatasetTools.git studio_data/dataset_tools
 ```
 
 > 💡 **原理说明**：由于 AnimaLoraStudio 官方自带的 `.gitignore` 已经忽略了 `studio_data/`，因此在该目录下克隆独立的 Git 仓库不会造成主项目出现任何未跟踪改动，实现完美的独立隔离。
@@ -70,6 +70,10 @@ git clone https://github.com/<your-username>/dskit.git studio_data/dataset_tools
 * 脚本会自动定位 Python 环境并在后台启动本地服务（默认端口 `8765`）；
 * 随后会自动在你的系统默认浏览器中打开数据集工作台；
 * 点击界面右上角的 **`【🧘 禅模式 (Z)】`** 或缩略图上的 **🔍 放大镜**，即可切入沉浸式全屏复审与标注！
+
+![主模式工作台总览](docs/images/01_main_workbench.png)
+
+![沉浸式禅模式全貌](docs/images/04_zen_mode_full.png)
 
 你也可以通过命令行手动启动：
 ```powershell
