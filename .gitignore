@@ -1,0 +1,33 @@
+# Python bytecode & cache
+__pycache__/
+*.py[cod]
+*$py.class
+*.pyd
+.pytest_cache/
+
+# Local backup restore points & exported sheets
+backups/*
+!backups/.gitkeep
+sheets/*
+!sheets/.gitkeep
+
+# Temporary / Local demo datasets
+_demo/
+*.log
+
+# Frontend development dependencies (node_modules symlink/junction)
+ui/node_modules/
+.npm/
+
+# Explicitly KEEP production pre-built UI assets so users don't need Node.js
+!ui/dist/
+!ui/dist/**
+
+# OS & Editor files
+.DS_Store
+Thumbs.db
+desktop.ini
+*.swp
+*.swo
+.vscode/
+.idea/
